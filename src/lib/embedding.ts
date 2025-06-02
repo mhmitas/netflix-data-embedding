@@ -84,7 +84,6 @@ async function getEmbedding(text: string): Promise<Array<number>> {
     return embeddings[0];
 }
 
-// CommonJS export
 export {
     getEmbeddings,
     getEmbedding,

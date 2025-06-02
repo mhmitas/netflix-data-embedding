@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
-import { getEmbeddings, initializeEmbeddingModel } from "./lib/embedding";
+import { sql } from "./lib/db.js";
+import { getEmbeddings, initializeEmbeddingModel } from "./lib/embedding.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +15,10 @@ const RETRY_DELAY_MS = 1000; // Can be reduced from 20s as no rate limit now
 const MAX_RETRIES = 5;       // Retries for local processing issues, not API limits
 
 async function populateEmbeddings() {
+
+    // const testEmbedding = await getEmbeddings("This is a test sentence.");
+    // console.log("Test embedding generated:", testEmbedding);
+    // return; // Remove this line to run the full script
     console.log("Starting embedding population script...");
 
     // --- Initialize the embedding model once at the start ---

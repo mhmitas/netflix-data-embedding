@@ -1,6 +1,4 @@
-require('dotenv').config(); // Load environment variables from .env file
-
-const { Pool } = require('pg');
+import { Pool } from "pg";
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -50,8 +48,4 @@ const sql: SqlFunction = async function (
     }
 };
 
-// CommonJS export
-module.exports = {
-    sql
-};
-
+export { sql };
