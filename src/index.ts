@@ -3,12 +3,18 @@ import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import { getEmbeddings, initializeEmbeddingModel } from "./lib/embedding.js";
 import { sql } from "./lib/db.js";
+import { markdownContent } from "./lib/constants.js";
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
+app.get('/', (req: express.Request, res: express.Response) => {
+    res.setHeader('Content-Type', 'text/markdown');
+    res.send(markdownContent); // assume markdownContent is defined
+});
 
 // --- Health Check Endpoint ---
 app.get('/health', async (req: express.Request, res: express.Response) => {
